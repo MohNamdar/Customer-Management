@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "shop.apps.ShopConfig",
     "club.apps.ClubConfig",
     "order.apps.OrderConfig",
+    "django.contrib.humanize",
 ]
 
 MIDDLEWARE = [
