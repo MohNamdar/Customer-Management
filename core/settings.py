@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "django_jalali",
     "shop.apps.ShopConfig",
-    "club.apps.ClubConfig"
+    "club.apps.ClubConfig",
+    "order.apps.OrderConfig"
 ]
 
 MIDDLEWARE = [
