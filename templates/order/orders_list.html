@@ -7,9 +7,39 @@
 
 {% block content %}
 
-    <!-- Main Content -->
-    <div class="main-content">
+    <div class="rounded-lg border border-gray-200">
+        <div class="overflow-x-auto rounded-t-lg">
+            {% if orders %}
+                <table class="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
 
+                    <thead class="ltr:text-left rtl:text-right">
+                    <tr>
+                        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">ID</th>
+                        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">نام خریدار</th>
+                        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">قیمت</th>
+                        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">تاریخ</th>
+                    </tr>
+                    </thead>
+
+                    <tbody class="divide-y divide-gray-200">
+
+                    {% for order in orders %}
+                        <tr>
+                            <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">{{ order.id }}</td>
+                            <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ order.buyer.get_full_name }}</td>
+                            <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ order.get_total_cost|intcomma }}</td>
+                            <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ order.created|jformat:"%H:%M - %Y/%m/%d" }}</td>
+                        </tr>
+                    {% endfor %}
+
+
+                    </tbody>
+                </table>
+            {% else %}
+                <h1>سفارشی ثبت نشده!</h1>
+            {% endif %}
+
+        </div>
     </div>
 
 {% endblock %}

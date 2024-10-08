@@ -7,9 +7,43 @@
 
 {% block content %}
 
-    <!-- Main Content -->
-    <div class="main-content">
+    <div class="rounded-lg border border-gray-200">
+        <div class="overflow-x-auto rounded-t-lg">
+            {% if customers %}
+                <table class="w-full divide-y-2 divide-gray-200 bg-white text-sm">
 
+                    <thead class="ltr:text-left rtl:text-right">
+                    <tr>
+                        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">ID</th>
+                        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">نام مشتری</th>
+                        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">نوع</th>
+                        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">تاریخ عضویت</th>
+                        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">تعداد مراجعه</th>
+                        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">آخرین مراجعه</th>
+                    </tr>
+                    </thead>
+
+                    <tbody class="divide-y divide-gray-200">
+
+                    {% for customer in customers %}
+                        <tr>
+                            <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">{{ customer.id|stringformat:"03d" }}</td>
+                            <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ customer.get_full_name }}</td>
+                            <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ customer.get_kind_display }}</td>
+                            <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ customer.register_date|jformat:"%H:%M - %Y/%m/%d" }}</td>
+                            <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ customer.visit_count }}</td>
+                            <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ customer.last_visit_date|jformat:"%H:%M - %Y/%m/%d" }}</td>
+                        </tr>
+                    {% endfor %}
+
+
+                    </tbody>
+                </table>
+            {% else %}
+                <h1>سفارشی ثبت نشده!</h1>
+            {% endif %}
+
+        </div>
     </div>
 
 {% endblock %}
